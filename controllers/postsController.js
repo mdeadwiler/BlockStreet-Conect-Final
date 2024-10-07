@@ -60,13 +60,74 @@ router.get("/:postId", async (req, res) => {
     if (post.author.toString() === req.session.user._id) {
       res.render("pages/show.ejs", { post });
     } else {
-      res.redirect("/viewAll");
+      res.redirect("/MyPage/viewAll");
     }
   } catch (error) {
     console.log(error);
     res.redirect("/");
   }
 });
+// DELETE A SPECIFIC BLOG
+router.delete("show.ejs/:postId", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId);
+    if (post.author.toString() == req.session.user._id) {
+      await Post.findByIdAndDelete(req.params.postId);
+      res.redirect("/MyPage/viewAll");
+    } else {
+      res.redirect("/MyPage/viewAll");
+    }
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
+//EDIT THE SPECIFIC POST
+router.get("show.ejs/:postId/edit", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId).populate("author");
+    if (post.author.toString() === req.session.user._id) {
+      res.render("pages/show.ejs", { post });
+    } else {
+      res.redirect("/MyPage/viewAll");
+    }
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
+
+router.put("/:postId", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.userId).populate("author");
+    if (post.author.toString() === req.session.user._id) {
+      await Post.findByIdAndUpdate(req.params.userId, req.body);
+      res.redirect(`/MyPage/viewAll.ejs${req.params.userId}`);
+    } else {
+      res.redirect("/MyPage/show.ejs");
+    }
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
+
+
+
+
+
+//This is my Update router
+/*router.put("/MyPage/:postId", async (req, res) => {
+  try {
+      await Post.findByIdAndUpdate(req.params.postId, req.body, { new: true });
+      res.redirect("/viewAll"); 
+  } catch (error) {
+      console.log(error);
+      res.redirect("/MyPage");
+  }
+});*/
+
+
 
 // This adds a comment to a specific post
 router.post("/:postId/comments", async (req, res) => {

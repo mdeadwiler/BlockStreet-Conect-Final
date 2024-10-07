@@ -1,22 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post</title>
-</head>
-<body>
-    <h1>You can post here</h1>
-    <form action="/MyPage" method="POST">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= author.name %></title>
+  </head>
+  <body>
+    <%- include("../partials/_navbar.ejs") %> <br />
+    <h1>Edit your post here</h1>
+    <form action="/MyPage/<%= post._id %>?_method=PUT" method="POST">
+      <div>
+        <label for="name">Name:</label><br /><br />
+        <input type="text" name="name" value="<%= author.name %>" required />
+      </div>
+      <br />
+    <!-- this is where you edit your page -->
+      <div>
+        <label for="content">Edit your post</label>
         <textarea
+          id="content"
           name="content"
-          maxlength="300"
-          placeholder="What's on your mind? (Max 300 characters)"
+          placeholder="Edit your post (Max 300 characters)"
           required
+          maxlength="300"
         >
-        </textarea>
-        <button type="submit">Post</button><br />
-        
+        <%= post.content %> <!-- This is the prefill -->
+            </textarea><br />
+      </div>
+        <!-- UPDATE & DELETE -->
+      <div>
+        <% if (post.author._id.toString() === user._id.toString()) { %>
+        <input type="submit" value="Update!" />
+    <!-- You have to have a seperate form for the delete button -->
+        <form action="/delete/<%= post._id %>" method="POST" style="display: inline" ><br/>
+          <button type="submit">Delete</button>
+        </form>
+        <% } %>
+      </div>
     </form>
-</body>
+  </body>
 </html>
