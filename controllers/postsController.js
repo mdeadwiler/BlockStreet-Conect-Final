@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
   res.render("pages/index.ejs");
 });
 
-// This is the view all page
+// This is the view all page && this allows the authors post to reference the cmments to the specifi post from top-bottom
 router.get("/viewAll", async (req, res) => {
   try {
     const allPosts = await Post.find({}).populate("author").sort({ createdAt: -1});
@@ -92,7 +92,8 @@ router.post("/:postId/comments", async (req, res) => {
     res.redirect("/MyPage/viewAll");
   }
 });
-// I have to create a PUT for the the comment post. Also, create a form for a comments
+
+//This will allow user to edit post
 
 
 
