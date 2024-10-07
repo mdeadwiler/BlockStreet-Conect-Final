@@ -67,21 +67,7 @@ router.get("/:postId", async (req, res) => {
     res.redirect("/");
   }
 });
-// DELETE A SPECIFIC BLOG
-router.delete("/:postId", async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.postId);
-    if (post.author.toString() == req.session.user._id) {
-      await Post.findByIdAndDelete(req.params.postId);
-      res.redirect("/MyPage/viewAll");
-    } else {
-      res.redirect("/MyPage/viewAll");
-    }
-  } catch (error) {
-    console.log(error);
-    res.redirect("/");
-  }
-});
+
 //EDIT THE SPECIFIC POST
 router.get("/:postId/edit", async (req, res) => {
   try {
@@ -99,10 +85,12 @@ router.get("/:postId/edit", async (req, res) => {
 //Update
 router.put("/:postId", async (req, res) => {
   try {
-    const post = await Post.findById(req.params.userId).populate("author");
+    const post = await Post.findById(req.params.postId);
+    console.log(post);
+    console.log(req.body);
     if (post.author.toString() === req.session.user._id) {
-      await Post.findByIdAndUpdate(req.params.userId, req.body);
-      res.redirect(`/MyPage/viewAll.ejs${req.params.userId}`);
+      await Post.findByIdAndUpdate(req.params.postId, req.body);
+      res.redirect("/MyPage/viewAll");
     } else {
       res.redirect("/MyPage/edit.ejs");
     }
@@ -151,6 +139,25 @@ router.post("/:postId/comments", async (req, res) => {
   }catch (error) {
     console.log(error);
     res.redirect("/MyPage/viewAll");
+  }
+});
+
+// DELETE A SPECIFIC BLOG
+
+router.delete("/:postId", async (req, res) => {
+  console.log(req.params);
+  try {
+    const post = await Post.findById(req.params.postId);
+    if (post.author.toString() === req.session.user._id) {
+      await Post.findByIdAndDelete(req.params.postId);
+      res.redirect("/MyPage/viewAll");
+    } else {
+      console.log("hello");
+      res.redirect("/MyPage/viewAll");
+    }
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
   }
 });
 

@@ -3,33 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Update your Post</title>
+    <title>"<%= post.author.username %>"</title>
   </head>
   <body>
     <%- include("../partials/_navbar.ejs") %> <br />
     <h1>Edit <%= post.author.username %></h1>
-    <form action="/pages/show.ejs<%= post._id %>?_method=PUT" method="POST">
+    <form action="/MyPage/<%= post._id %>?_method=PUT" method="POST">
       <div>
-        <input value="<%= post.author.username %>" required />
-      </div>
-      <br />
-    <!-- this is where you edit your page -->
-      <div>
-        <label for="content">Edit your post</label>
-        <textarea id="content" name="content" required >
+        <textarea id="content" name="content" required maxlength="300" >
         <%= post.content %> 
             </textarea><br />
-      </div>
-        <!-- UPDATE & DELETE -->
+      </div><br />
+    </form>
       <div>
         <% if (post.author._id.toString() === user._id.toString()) { %>
-        <input type="submit" value="Update!" />
+        <input type="submit" value="Update!" /><br />
     <!-- You have to have a seperate form for the delete button -->
-        <form action="/delete/<%= post._id %>" method="POST" style="display: inline" ><br/>
+        <form action="/MyPage/<%= post._id %>?_method=DELETE" method="POST">
           <button type="submit">Delete</button>
         </form>
         <% } %>
       </div>
-    </form>
   </body>
 </html>
