@@ -53,12 +53,12 @@ router.post("/", async (req, res) => {
   }
 });
 
-// This allows view for a specific post
+// This allows view for a specific post, edit, & update
 router.get("/:postId", async (req, res) => {
   try {
     const post = await Post.findById(req.params.postId);
     if (post.author.toString() === req.session.user._id) {
-      res.render("pages/show.ejs", { post });
+      res.render("pages/edit.ejs", { post });
     } else {
       res.redirect("/MyPage/viewAll");
     }
@@ -68,7 +68,7 @@ router.get("/:postId", async (req, res) => {
   }
 });
 // DELETE A SPECIFIC BLOG
-router.delete("show.ejs/:postId", async (req, res) => {
+router.delete("/:postId", async (req, res) => {
   try {
     const post = await Post.findById(req.params.postId);
     if (post.author.toString() == req.session.user._id) {
@@ -83,11 +83,11 @@ router.delete("show.ejs/:postId", async (req, res) => {
   }
 });
 //EDIT THE SPECIFIC POST
-router.get("show.ejs/:postId/edit", async (req, res) => {
+router.get("/:postId/edit", async (req, res) => {
   try {
     const post = await Post.findById(req.params.postId).populate("author");
     if (post.author.toString() === req.session.user._id) {
-      res.render("pages/show.ejs", { post });
+      res.render("pages/edit.ejs", { post });
     } else {
       res.redirect("/MyPage/viewAll");
     }
@@ -96,7 +96,7 @@ router.get("show.ejs/:postId/edit", async (req, res) => {
     res.redirect("/");
   }
 });
-
+//Update
 router.put("/:postId", async (req, res) => {
   try {
     const post = await Post.findById(req.params.userId).populate("author");
@@ -104,7 +104,7 @@ router.put("/:postId", async (req, res) => {
       await Post.findByIdAndUpdate(req.params.userId, req.body);
       res.redirect(`/MyPage/viewAll.ejs${req.params.userId}`);
     } else {
-      res.redirect("/MyPage/show.ejs");
+      res.redirect("/MyPage/edit.ejs");
     }
   } catch (error) {
     console.log(error);

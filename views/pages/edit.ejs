@@ -3,28 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= author.name %></title>
+    <title>Update your Post</title>
   </head>
   <body>
     <%- include("../partials/_navbar.ejs") %> <br />
-    <h1>Edit your post here</h1>
-    <form action="/MyPage/<%= post._id %>?_method=PUT" method="POST">
+    <h1>Edit <%= post.author.username %></h1>
+    <form action="/pages/show.ejs<%= post._id %>?_method=PUT" method="POST">
       <div>
-        <label for="name">Name:</label><br /><br />
-        <input type="text" name="name" value="<%= author.name %>" required />
+        <input value="<%= post.author.username %>" required />
       </div>
       <br />
     <!-- this is where you edit your page -->
       <div>
         <label for="content">Edit your post</label>
-        <textarea
-          id="content"
-          name="content"
-          placeholder="Edit your post (Max 300 characters)"
-          required
-          maxlength="300"
-        >
-        <%= post.content %> <!-- This is the prefill -->
+        <textarea id="content" name="content" required >
+        <%= post.content %> 
             </textarea><br />
       </div>
         <!-- UPDATE & DELETE -->
