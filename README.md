@@ -1,10 +1,16 @@
 # BlockStreet Connect
 
-![WF3](/images/2ebce5c4-bdd1-4b50-97c5-327541fcc746.jpeg) ![WF](/images/wireFrame.jpg) ![Trello](https://trello.com/invite/b/66fdb85a6c38f67a10a8e265/ATTIc463f56540891055a77b17ad08d1e488D61B9A87/blockstreet-connect)
+
+![WF3](/images/2ebce5c4-bdd1-4b50-97c5-327541fcc746.jpeg) ![WF](/images/wireFrame.jpg) 
+
 
 
 ## ***About***
 * BlockStreet Connect is a platform for crypto, tech, and wall street enthusiasts to share thoughts, whether it’s venting, celebrating, or setting goals. Users can network through posts and comments. 
+
+This project is being actively tracked on Trello. Click the link below to view the project's progress, tasks, and milestones.
+
+[Trello Board](https://trello.com/b/tyN7ADHC/blockstreet-connect)
 
 ### ***Knowledge***
 
