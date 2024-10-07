@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="posts">
+        <h2>All Talkers</h2>
+        <div id="posts">
+          <!-- This allows the post population -->
+          <% posts.forEach(post => { %>
+          <div class="post">
+            <a href='/MyPage/<%= post._id %>'><p><%= post.content %></p></a>
+            <p><%= post.author %></p>
+          </div>
+          <% }) %>
+        </div>
+      </section>
+    </main>a><br>
+    <nav>
+ <% if (user) { %>
+        
+            <p>
+                <a href="/MyPage">Home</a>
+              <a href="/MyPage/newPost">Create Post</a> 
+              <a href="/MyPage/show.ejs">Comment</a>
+              <a href="/auth/sign-out">Sign out</a>
+            </p>
+          <% } else { %>
+        
+            <p>
+                <a href="/MyPage/newPost">Create Post</a> 
+              <a href="/MyPage/show.ejs">Comment</a>
+            </p>
+          <% } %>
+        </nav>
+</body>
+</html>
