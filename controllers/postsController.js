@@ -97,7 +97,7 @@ router.put("/:postId", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.redirect("/");
-  }
+  } 
 });
 
 

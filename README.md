@@ -1,6 +1,6 @@
 # BlockStreet Connect
 
-![WF3](/images/WireFrame3..png) ![WF](/images/wireFrame.jpg)
+![WF3](/images/2ebce5c4-bdd1-4b50-97c5-327541fcc746.jpeg) ![WF](/images/wireFrame.jpg)
 
 
 ## ***About***
