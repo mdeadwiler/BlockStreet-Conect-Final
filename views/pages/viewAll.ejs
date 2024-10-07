@@ -8,33 +8,28 @@
 <body>
     <section id="posts">
         <h2>All Talkers</h2>
+        <%- include("../partials/_navbar.ejs") %>
         <div id="posts">
           <!-- This allows the post population -->
           <% posts.forEach(post => { %>
           <div class="post">
+            <p><%= post.author.username %></p>
             <a href='/MyPage/<%= post._id %>'><p><%= post.content %></p></a>
-            <p><%= post.author %></p>
+            <form action="/MyPage/<%= post._id %>/comments" method="POST">
+              <label for="content">Comment: </label>
+              <input type="text" id="content" name="content">
+              <button type="submit">Add Comment</button>
+            </form>
+            <button>Show Comments:</button>
+            <div>
+              <% post.comments.forEach(comment => { %>
+                <p><%= comment.author.username %>: <%= comment.content %></p>
+              <% }) %>
+            </div>
           </div>
           <% }) %>
         </div>
       </section>
-    </main>a><br>
-    <nav>
- <% if (user) { %>
-        
-            <p>
-                <a href="/MyPage">Home</a>
-              <a href="/MyPage/newPost">Create Post</a> 
-              <a href="/MyPage/show.ejs">Comment</a>
-              <a href="/auth/sign-out">Sign out</a>
-            </p>
-          <% } else { %>
-        
-            <p>
-                <a href="/MyPage/newPost">Create Post</a> 
-              <a href="/MyPage/show.ejs">Comment</a>
-            </p>
-          <% } %>
-        </nav>
+    </main><br>
 </body>
 </html>

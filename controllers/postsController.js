@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const { Post, Comment } = require("../models/posts.js");
+const Post = require("../models/posts.js");
+const Comment = require("../models/comment.js");
 
 // get to the home index.ejs page
 router.get("/", (req, res) => {
@@ -11,8 +12,14 @@ router.get("/", (req, res) => {
 // This is the view all page
 router.get("/viewAll", async (req, res) => {
   try {
-    const allPosts = await Post.find({});
-    res.render("pages/viewAll.ejs", { posts: allPosts });
+    const allPosts = await Post.find({}).populate("author").sort({ createdAt: -1});
+    
+    const postsWithComments = await Promise.all(allPosts.map(async (post) => {
+      const comments = await Comment.find({ post: post._id }).populate("author")
+      return {...post.toObject(), comments}
+    }))
+
+    res.render("pages/viewAll.ejs", { posts: postsWithComments });
   } catch (error) {
     console.log(error);
     res.redirect("/");
@@ -39,10 +46,10 @@ router.post("/", async (req, res) => {
 
     const post = new Post(postData);
     await post.save();
-    res.redirect("/MyPage/newPost");
+    res.redirect("/MyPage/viewAll");
   } catch (error) {
     console.log(error);
-    res.redirect("/veiwAll");
+    res.redirect("/");
   }
 });
 
@@ -72,17 +79,28 @@ router.post("/:postId/comments", async (req, res) => {
         author: req.session.user._id,
         post: req.params.postId,
       });
-  await newComment.save();
+
+      await newComment.save();
      // Add the comment to the specific id
-      post.comments.push(newComment._id);
-      await post.save();
+      // post.comments.push(newComment._id);
+      // await post.save();
       // Redirect back to viewAll after adding the comment
-      res.redirect("/viewAll");
-    } }catch (error) {
+      res.redirect("/MyPage/viewAll");
+    } 
+  }catch (error) {
     console.log(error);
-    res.redirect("/viewAll");
+    res.redirect("/MyPage/viewAll");
   }
 });
-//You have to create a PUT for the the comment post. Also, create a form for a comments
+// I have to create a PUT for the the comment post. Also, create a form for a comments
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

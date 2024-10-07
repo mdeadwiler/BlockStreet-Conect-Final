@@ -6,8 +6,8 @@
     <title>Create-Post</title>
 </head>
 <body>
-    <h1>Create Post</h1>
-    <p>This is a route to create new post</p>
+    <h1>This is a free space</h1>
+    <%- include("../partials/_navbar.ejs") %>
     <form action="/MyPage" method="POST">
         <textarea
           name="content"
@@ -17,8 +17,8 @@
         >
         </textarea>
         <button type="submit">Post</button><br />
-        <a href="/comments">Leave Comment</a><br />
-        <a href="/MyPage/viewAll">View All</a>
+        
+        
     </form>
 </body>
 </html>
