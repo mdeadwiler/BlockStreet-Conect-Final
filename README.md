@@ -1,6 +1,6 @@
 # BlockStreet Connect
 
-![WF3](/images/2ebce5c4-bdd1-4b50-97c5-327541fcc746.jpeg) ![WF](/images/wireFrame.jpg)
+![WF3](/images/2ebce5c4-bdd1-4b50-97c5-327541fcc746.jpeg) ![WF](/images/wireFrame.jpg) ![Trello](https://trello.com/invite/b/66fdb85a6c38f67a10a8e265/ATTIc463f56540891055a77b17ad08d1e488D61B9A87/blockstreet-connect)
 
 
 ## ***About***
