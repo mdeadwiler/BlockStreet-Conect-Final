@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
   res.render("pages/index.ejs");
 });
 
-// This is the view all page && this allows the authors post to reference the cmments to the specifi post from top-bottom
+// This is the view all page && this allows the authors post to reference the comments to the specific post from top-bottom
 router.get("/viewAll", async (req, res) => {
   try {
     const allPosts = await Post.find({}).populate("author").sort({ createdAt: -1});

@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create-Post</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <script src="/scripts/app.js" defer></script>
-</head>
-<body>
-     <div class="new-post-container">
-     <%- include("../partials/_navbar.ejs") %>
-     <h1>This is a free space</h1>
-    <form action="/MyPage" method="POST">
-    <textarea name="content" maxlength="300" required placeholder="What's on your mind?, Don't be shy."></textarea>
-    <button type="submit">Post</button>
-    </form>
+  </head>
+  <body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Spectral+SC:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Titan+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <div class="new-post-container">
+      <%- include("../partials/_navbar.ejs") %>
+      <h1>This is a free space</h1>
+      <form action="/MyPage" method="POST">
+        <textarea
+          name="content"
+          maxlength="300"
+          required
+          placeholder="What's on your mind?, Don't be shy."
+        ></textarea>
+        <button type="submit">Post</button>
+      </form>
     </div>
-    
-</body>
+  </body>
 </html>
-
-
