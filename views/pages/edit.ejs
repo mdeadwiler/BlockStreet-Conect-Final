@@ -4,19 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>"<%= post.author.username %>"</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="/scripts/app.js" defer></script>
   </head>
   <body>
+    <div class="edit-container"></div>
     <%- include("../partials/_navbar.ejs") %> <br />
-    <h1>Edit <%= post.author.username %></h1>
     <form action="/MyPage/<%= post._id %>?_method=PUT" method="POST">
-      <div>
-        <textarea id="content" name="content" required maxlength="300" >
-        <%= post.content %> 
-            </textarea><br />
-      </div><br />
-      <button type="submit">Update!</button><br />
+      <h1>Edit Your Post</h1>
+        <textarea name="content" required><%= post.content %></textarea>
+        <div class="button-container">
+            <button type="submit">Update</button>
+            <a href="/MyPage" class="link-button">Cancel</a>
+        </div>
     </form>
-      <div>
+</div>
     <!-- You have to have a seperate form for the delete button -->
         <form action="/MyPage/<%= post._id %>?_method=DELETE" method="POST">
           <button type="submit">Delete</button>

@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyDashboard</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="/scripts/app.js" defer></script>
 </head>
 <body>
-    <h1>BlockStreet Connect</h1>
-    <%- include('../partials/_navbar.ejs') %>
+    <div class="index-container">
+        <h1>Welcome Back, <%= user.username %>!</h1>
+        
+        <%- include("../partials/_navbar.ejs") %>
+    </div>
+    
 </body>
 </html>

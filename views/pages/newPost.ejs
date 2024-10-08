@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create-Post</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="/scripts/app.js" defer></script>
 </head>
 <body>
-    <h1>This is a free space</h1>
-    <%- include("../partials/_navbar.ejs") %>
+     <div class="new-post-container">
+     <%- include("../partials/_navbar.ejs") %>
+     <h1>This is a free space</h1>
     <form action="/MyPage" method="POST">
-        <textarea
-          name="content"
-          maxlength="300"
-          required
-        >
-        </textarea>
-        <button type="submit">Post</button><br />
+    <textarea name="content" maxlength="300" required placeholder="What's on your mind?, Don't be shy."></textarea>
+    <button type="submit">Post</button>
     </form>
+    </div>
+    
 </body>
 </html>
 

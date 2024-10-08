@@ -161,7 +161,6 @@ router.delete("/:postId", async (req, res) => {
   }
 });
 
-//This will allow user to edit post
 
 
 
