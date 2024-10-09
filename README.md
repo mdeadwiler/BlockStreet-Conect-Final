@@ -1,43 +1,65 @@
 # BlockStreet Connect
 
-
+![app1](/images/wireframedesign.jpg)
 ![WF3](/images/2ebce5c4-bdd1-4b50-97c5-327541fcc746.jpeg) ![WF](/images/wireFrame.jpg) 
 
 
 
-## ***About***
-* BlockStreet Connect is a platform for crypto, tech, and wall street enthusiasts to share thoughts, whether it’s venting, celebrating, or setting goals. Users can network through posts and comments. 
+## ***About & How it started:***
 
-This project is being actively tracked on Trello. Click the link below to view the project's progress, tasks, and milestones.
+* I started this project by planning out a web application focused on connecting enthusiasts from the crypto, stock trading, and tech communities. I got my base idea from the old app Twitter. I outlined my initial idea and feature set exploriing the app "X", "Thread", and Trello.
+* BlockStreet Connect is a community-driven platform designed for crypto traders, day traders, and tech enthusiasts to share thoughts, accomplishments, goals, and frustrations. The platform enables users to connect and network with like-minded individuals through posts and comments.
+* The goal was to create a community-driven space where users could connect and network.
 
+
+* Trello helped me orgainze my day to day tasks.
 [Trello Board](https://trello.com/b/tyN7ADHC/blockstreet-connect)
 
-### ***Knowledge***
+### ***Key Features***
 
-* HTML & CSS
-* JavaScript - DOM, EJS(Express), Event Handling(Forms), & Validation
-* Node.js - Express server, HTTP, Middleware(Morgan)
-* RESTful APIs - CRUD
-* Authentication - JWT(stretch-goal: JSON Web Tokens, bcrypt), Sign-up & Login
-* Database Management - MongoDB, Relationships(1 - Many), manage the CRUD operations in DB
-* Git and GitHub - git add, git commit, git push(Version Control)
-* Markdown - README.md
-* Trello & Figma
+* User Authentication: Register and log in to create personalized profiles.
+* Post Management: Create, read, update, and delete posts (max length: 300 characters).
+* User Interaction: Comment on posts and view all user activity in a live feed.
+* Dynamic Content: Posts can include text, with future plans to support images and videos(Stretch-Goals).
 
-#### ***Proud Syntax***
+#### ***My Tech Stack***
 
->>***Code Snippet: Will show later***
+* Frontend: HTML, CSS, EJS templates.
+* Backend: Node.js, Express.
+* Database: MongoDB, Mongoose.
+* Authentication: Session management for secure user authentication. 
+
+>>***Proud Code Syntax***
+```Javascript
+router.get("/viewAll", async (req, res) => {
+  try {
+    const allPosts = await Post.find({}).populate("author").sort({ createdAt: -1});
+    
+    const postsWithComments = await Promise.all(allPosts.map(async (post) => {
+      const comments = await Comment.find({ post: post._id }).populate("author")
+      return {...post.toObject(), comments}
+    }))
+
+    res.render("pages/viewAll.ejs", { posts: postsWithComments });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
+```
 
 >#### ***Goals***
 
-![APP](/images/cryptoidea.jpg)
+![APP](/images/clientside.jpeg)
 
 
-### ***MVP***
-* Build a basic version of BlockStreet Connect that allows users to create, view, and interact with posts about crypto, tech, and finance topics. 
-* Focus on essential features for a functional app with basic CRUD operations, authentication, clean user interaction, and show a clean DB.
+### ***Roadmap***
+* Initial Setup: Created folder structure, server configuration, and basic routes.
+* Core Functionality: Implemented CRUD operations for posts and comments.
+* User Authentication: Built sign-in and sign-up pages for user management.
+* Styling with CSS: Designed an urban-themed interface using custom CSS and integrated Google Fonts.
 
 #### ***Stretch Goals***
-* Image & Video Uploads: Understanding how to handle file uploads with tools like Multer (for Node.js).
-* Real-time interaction & Notifications via email
-* Security Authentication - JWT(JSON Web Tokens)
+* Friend Requests: Enable users to connect and build their network.
+* Media Support: Allow users to add images and videos to their posts.
+* Notifications: Implement notifications for comments and post interactions.
