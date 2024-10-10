@@ -7,7 +7,7 @@
 
 ## ***About & How it started:***
 
-* I started this project by planning out a web application focused on connecting enthusiasts from the crypto, stock trading, and tech communities. I got my base idea from the old app Twitter. I outlined my initial idea and feature set exploriing the app "X", "Thread", and Trello.
+* I started this project by planning out a web application focused on connecting enthusiasts from the crypto, stock trading, and tech communities. I got my base idea from the old app Twitter. I outlined my initial idea and feature set exploring the app "X", "Thread", and Trello.
 * BlockStreet Connect is a community-driven platform designed for crypto traders, day traders, and tech enthusiasts to share thoughts, accomplishments, goals, and frustrations. The platform enables users to connect and network with like-minded individuals through posts and comments.
 * The goal was to create a community-driven space where users could connect and network.
 
